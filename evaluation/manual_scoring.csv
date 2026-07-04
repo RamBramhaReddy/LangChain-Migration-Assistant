@@ -1,0 +1,31 @@
+question,answer_correctness_0_5,retrieval_relevant_yes_no,hallucination_yes_no,completeness_yes_no,notes
+What replaced BaseLanguageModel.predict()?,5,Y,N,Y,Correct after guard fix - matches GT exactly
+What replaced chain.run()?,5,Y,N,Y,Correct after retrieval fix - matches GT exactly
+How do I migrate LLMChain?,5,Y,N,Y,"Correct, matches GT (RunnableSequence/LCEL)"
+What replaced SequentialChain?,2,N,N,N,"Says 'moved to langchain-classic, no direct replacement' - misses GT's RunnableSequence/LCEL answer"
+How do I migrate RetrievalQA?,5,Y,N,Y,"Correct, matches GT (create_retrieval_chain)"
+What replaced initialize_agent()?,4,Y,N,Y,"Correct after JSON-parse fix - mentions create_agent/create_react_agent, matches GT intent"
+How do I migrate ConversationChain?,1,N,N,N,Recommends create_history_aware_retriever instead of RunnableWithMessageHistory - wrong replacement
+What replaced ChatOpenAI.predict()?,0,N,N,N,"KNOWN LIMITATION: declines to answer - inherited method (ChatOpenAI extends BaseChatModel) never literally named in docs, guard correctly avoids hallucinating"
+How do I migrate HuggingFaceEmbeddings imports?,4,Y,N,Y,"Correct import path given, matches GT"
+How do I migrate ChatOpenAI imports?,4,Y,N,Y,"Correct final import shown despite odd 'run tool twice' framing, matches GT"
+How do I migrate QdrantVectorStore imports?,5,Y,N,Y,"Correct, matches GT"
+What replaced apply()?,0,N,N,N,Retrieval miss - says 'insufficient info' though apply()->batch() exists elsewhere in same doc set (see row 27)
+What replaced apredict()?,1,N,N,N,"Answers about predict() not apredict() specifically - misses ainvoke(), wrong target API"
+How do I use astream_events v2?,5,Y,N,Y,"Correct, matches GT (version='v2')"
+What changed in LangChain v1.0?,4,Y,N,Y,Correct high-level summary of v1.0 changes
+from langchain.chains import LLMChain (code snippet),4,Y,N,Y,"Correct LCEL/invoke migration, matches GT intent"
+response = llm.predict('Hello'),5,Y,N,Y,"Correct, matches GT (invoke())"
+response = llm.predict_messages(messages),5,Y,N,Y,"Correct, matches GT (invoke(messages))"
+chain.run('What is LangChain?'),3,Y,N,N,Mentions legacy/langchain-classic but doesn't clearly state invoke() as the direct GT answer
+chain.apply(inputs),5,Y,N,Y,"Correct, matches GT (batch(inputs))"
+await llm.apredict('Hello'),5,Y,N,Y,"Correct, matches GT (ainvoke())"
+await chain.arun('Hello'),5,Y,N,Y,"Correct, matches GT (ainvoke())"
+from langchain.embeddings import HuggingFaceEmbeddings,1,N,N,N,Recommends init_embeddings instead of langchain_huggingface import - wrong substitution vs GT
+from langchain.chat_models import ChatOpenAI,5,Y,N,Y,"Correct final import shown, matches GT"
+from langchain.vectorstores import Qdrant,5,Y,N,Y,"Correct, matches GT (langchain_qdrant.QdrantVectorStore intent)"
+from langchain.document_loaders import TextLoader,5,Y,N,Y,"Correct, matches GT"
+from langchain.vectorstores import FAISS,0,N,N,N,"False negative - says 'not deprecated, no changes required' though GT has clear FAISS import replacement"
+from langchain.memory import ConversationBufferMemory,0,N,N,N,False negative - says 'not deprecated' though GT recommends RunnableWithMessageHistory
+retrieval_qa = RetrievalQA.from_chain_type(...),5,Y,N,Y,"Correct, matches GT (create_retrieval_chain)"
+"agent = initialize_agent(tools, llm, agent='zero-shot-react-description')",5,Y,N,Y,"Correct after JSON-parse fix - detailed, matches GT"

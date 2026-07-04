@@ -1,0 +1,46 @@
+question,ground_truth
+"What replaced BaseLanguageModel.predict()?","Use invoke() instead of BaseLanguageModel.predict()."
+"What replaced chain.run()?","Use invoke() instead of run()."
+"How do I migrate LLMChain?","Replace LLMChain with the LangChain Expression Language (LCEL) using prompt | llm."
+"What replaced SequentialChain?","Use RunnableSequence or compose runnables with LCEL."
+"How do I migrate RetrievalQA?","Use create_retrieval_chain() together with a document combining chain."
+"What replaced initialize_agent()?","Use LangGraph or create_react_agent()."
+"How do I migrate ConversationChain?","Use RunnableWithMessageHistory."
+"What replaced ChatOpenAI.predict()?","Use invoke()."
+"How do I migrate HuggingFaceEmbeddings imports?","Import HuggingFaceEmbeddings from langchain_huggingface."
+"How do I migrate ChatOpenAI imports?","Import ChatOpenAI from langchain_openai."
+"How do I migrate QdrantVectorStore imports?","Import QdrantVectorStore from langchain_qdrant."
+"What replaced apply()?","Use batch()."
+"What replaced apredict()?","Use ainvoke()."
+"How do I use astream_events v2?","Call astream_events(version='v2')."
+"What changed in LangChain v1.0?","Follow the migration guide and replace deprecated APIs with Runnable-based APIs."
+
+"from langchain.chains import LLMChain\nfrom langchain.prompts import PromptTemplate\n\nprompt = PromptTemplate(input_variables=['topic'], template='Explain {topic}')\nchain = LLMChain(llm=llm, prompt=prompt)\nprint(chain.run('RAG'))","Replace LLMChain with LCEL (prompt | llm) and replace run() with invoke()."
+
+"response = llm.predict('Hello')","Replace predict() with invoke()."
+
+"response = llm.predict_messages(messages)","Replace predict_messages() with invoke(messages)."
+
+"chain.run('What is LangChain?')","Replace run() with invoke()."
+
+"chain.apply(inputs)","Replace apply() with batch(inputs)."
+
+"await llm.apredict('Hello')","Replace apredict() with ainvoke()."
+
+"await chain.arun('Hello')","Replace arun() with ainvoke()."
+
+"from langchain.embeddings import HuggingFaceEmbeddings","Import HuggingFaceEmbeddings from langchain_huggingface."
+
+"from langchain.chat_models import ChatOpenAI","Import ChatOpenAI from langchain_openai."
+
+"from langchain.vectorstores import Qdrant","Import QdrantVectorStore from langchain_qdrant."
+
+"from langchain.document_loaders import TextLoader","Import TextLoader from langchain_community.document_loaders."
+
+"from langchain.vectorstores import FAISS","Import FAISS from langchain_community.vectorstores."
+
+"from langchain.memory import ConversationBufferMemory","Use RunnableWithMessageHistory where appropriate according to the migration guide."
+
+"retrieval_qa = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)","Use create_retrieval_chain() with a document combining chain."
+
+"agent = initialize_agent(tools, llm, agent='zero-shot-react-description')","Use LangGraph or create_react_agent() instead of initialize_agent()."

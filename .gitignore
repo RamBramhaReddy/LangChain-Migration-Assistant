@@ -1,0 +1,15 @@
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.env
+qdrant_db/
+chunks.pkl
+data/raw/
+data/cleaned/
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
