@@ -1,5 +1,7 @@
 # LangChain Migration Assistant
 
+**Live demo:** [langchain-migration-assistant.streamlit.app](https://langchain-migration-assistant.streamlit.app/)
+
 A RAG-powered tool that helps developers migrate their LangChain code from older versions (v0.1 through v1.0) to the latest APIs. Paste a code snippet, an error message, or just ask a question in plain English, and it finds the relevant migration documentation and generates a version-aware answer, telling you what changed, why, and how to update your code.
 
 ## What it does
